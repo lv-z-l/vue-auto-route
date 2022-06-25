@@ -8,7 +8,8 @@ async function generateRoute(dir, dest) {
   const resRoute = []
   files.forEach(async file => {
     const match = file.match(RegExp_Dir)
-    const path = match[match.length - 2]
+    
+    const path = match.length >=2 ? match[match.length - 2] : match[0]
     const componentText = "() => import('@" + file.replace('src', '') + "')"
     resRoute.push(`{
       path: '${path}',
